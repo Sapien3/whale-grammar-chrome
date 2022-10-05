@@ -4,10 +4,10 @@ import { measure } from "measurement-protocol";
 import { fetchJson } from "./background_components/jsonp.functions";
 import splitText from "./background_components/split.function";
 
-// const GA_TRACK_ID = 'UA-222165360-1';
-// const sendInspectionEvent = (origin) => {
-// 	return measure(GA_TRACK_ID).event('GrammarInspection', 'Inspection', origin).send();
-// };
+const GA_TRACK_ID = 'UA-222165360-1';
+const sendInspectionEvent = (origin) => {
+	return measure(GA_TRACK_ID).event('GrammarInspection', 'Inspection', origin).send();
+};
 // const sendPageViewEvent = () => {
 // 	return measure(GA_TRACK_ID).event('WhaleLegacy', 'SidebarOpen').send();
 // };
@@ -219,6 +219,7 @@ chrome.runtime.onConnect.addListener(function(port) {
           INSPECTION_LISTENER.hasOwnProperty(action) &&
           typeof INSPECTION_LISTENER[action] === `function`
       )
+          console.log('action: ', action)
           INSPECTION_LISTENER[action](port, options);
   });
 });
