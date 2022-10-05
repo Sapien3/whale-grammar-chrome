@@ -2,9 +2,9 @@ import "@webcomponents/custom-elements";
 import GrammarExtension from "./inspection_components/grammar-extension.element";
 import GrammarMirror from "./inspection_components/grammar-mirror.element";
 
-import { isSidebar } from "./sidebar_components/ui.component";
+// import { isSidebar } from "./sidebar_components/ui.component";
 import { cloneElementStyles } from "./inspection_components/clone.styles";
-import { addURLtoBlacklist, isURLinBlacklist } from "./inspection_components/blacklist.component";
+// import { addURLtoBlacklist, isURLinBlacklist } from "./inspection_components/blacklist.component";
 import {
 	renderMirrorElement, onTextAreaFocused, onEditableElementFocused
 } from "./inspection_components/grammar-mirror.functions";
@@ -99,7 +99,8 @@ const EVENT_LISTENER = {
 		this.mirrorEl = renderMirrorElement();
 		document.documentElement.appendChild(this.mirrorEl);
 
-		this.port = whale.runtime.connect({ name: `grammar-inspection` });
+		// this.port = whale.runtime.connect({ name: `grammar-inspection` });
+		this.port = chrome.runtime.connect({ name: `grammar-inspection` });
 		this.port.onMessage.addListener(message => {
 			const { action, options } = message;
 			if(
@@ -160,15 +161,30 @@ window.addEventListener(`load`, function() {
 	window.customElements.define(`grammar-mirror`, GrammarMirror, { extends: `div` });
 });
 document.addEventListener(`DOMContentLoaded`, function() {
-	if(isSidebar() === true) {
-		return;
-	}
+	// if(isSidebar() === true) {
+	// 	return;
+	// }
 
 	const { hostname } = location;
-	isURLinBlacklist(hostname).then(isBlocked => {
-		if(isBlocked === true) {
-			return;
-		}
+	// isURLinBlacklist(hostname).then(isBlocked => {
+	// 	if(isBlocked === true) {
+	// 		return;
+	// 	}
+
+	// 	const eventListener = e => EVENT_LISTENER.onDocumentFocused(e);
+	// 	EVENT_LISTENER.initializeListener();
+	// 	document.addEventListener(`focusin`, eventListener, true);
+	// 	window.addEventListener(`message`, e => {
+	// 		const { action } = e.data;
+	// 		if(action === `inspectionPowerOff`) {
+	// 			if(confirm(`${hostname} 에서\n맞춤법 검사를 비활성화 하시겠습니까?`)) {
+	// 				document.removeEventListener(`focusin`, eventListener, true);
+	// 				EVENT_LISTENER.destructListener();
+	// 				// addURLtoBlacklist(hostname);
+	// 			}
+	// 		}
+	// 	});
+	// });
 
 		const eventListener = e => EVENT_LISTENER.onDocumentFocused(e);
 		EVENT_LISTENER.initializeListener();
@@ -179,9 +195,9 @@ document.addEventListener(`DOMContentLoaded`, function() {
 				if(confirm(`${hostname} 에서\n맞춤법 검사를 비활성화 하시겠습니까?`)) {
 					document.removeEventListener(`focusin`, eventListener, true);
 					EVENT_LISTENER.destructListener();
-					addURLtoBlacklist(hostname);
+					// addURLtoBlacklist(hostname);
 				}
 			}
 		});
-	});
+
 });

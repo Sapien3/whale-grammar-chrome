@@ -8,7 +8,7 @@
     "copy": "cp -rip src/* dist/",
     "build": "./node_modules/.bin/webpack --mode=none",
     "build:prod": "npm run cleanup && npm run copy && ./node_modules/.bin/webpack --optimize-minimize",
-    "build:watch": "npm run cleanup && npm run copy && ./node_modules/.bin/webpack --mode=none --watch",
+    "build:watch": "npm run cleanup && npm run copy && webpack --mode=none --watch",
     "eslint": "./node_modules/.bin/eslint"
   },
   "repository": {

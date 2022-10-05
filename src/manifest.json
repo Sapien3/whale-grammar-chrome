@@ -10,28 +10,11 @@
     "64": "image/icons/application_logo_64.png",
     "128": "image/icons/application_logo_128.png"
   },
-  "sidebar_action": {
-    "default_page": "sidebar.html",
-    "default_icon": {
-      "32": "image/icons/sidebar_logo_32.png",
-      "48": "image/icons/sidebar_logo_48.png",
-      "64": "image/icons/sidebar_logo_64.png"
-    },
-    "default_title": "웨않되 맞춤법검사",
-    "use_navigation_bar": false,
-    "mobile_user_agent": true
-  },
   "background": {
     "scripts": [ "js/background.js" ]
   },
   "content_scripts": [
     {
-      "matches": ["https://m.search.naver.com/search.naver?from=whale-grammar&query=*"],
-      "css": ["css/content-script.sidebar.css"],
-      "js": ["js/content-script.sidebar.js", "js/content-script.sidebar.iframe.js"],
-      "all_frames": true,
-      "run_at": "document_start"
-    }, {
       "matches": ["<all_urls>"],
       "exclude_matches": ["https://*.notion.so/*"],
       "css": ["css/content-script.inspection.css"],

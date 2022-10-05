@@ -20,12 +20,18 @@ class GrammarExtension extends HTMLElement {
 
 	_getFiles() {
 		return {
-			cssFile: whale.runtime.getURL(`css/grammar-extension.element.css`),
-			checkImg: whale.runtime.getURL(`image/default.png`),
-			powerOffImg: whale.runtime.getURL(`image/power.svg`),
-			loadingImg: whale.runtime.getURL(`image/loading.svg`),
-			cautionImg: whale.runtime.getURL(`image/caution.svg`),
-			errorImg: whale.runtime.getURL(`image/error.svg`)
+			// cssFile: whale.runtime.getURL(`css/grammar-extension.element.css`),
+			// checkImg: whale.runtime.getURL(`image/default.png`),
+			// powerOffImg: whale.runtime.getURL(`image/power.svg`),
+			// loadingImg: whale.runtime.getURL(`image/loading.svg`),
+			// cautionImg: whale.runtime.getURL(`image/caution.svg`),
+			// errorImg: whale.runtime.getURL(`image/error.svg`)
+			cssFile: chrome.runtime.getURL(`css/grammar-extension.element.css`),
+			checkImg: chrome.runtime.getURL(`image/default.png`),
+			powerOffImg: chrome.runtime.getURL(`image/power.svg`),
+			loadingImg: chrome.runtime.getURL(`image/loading.svg`),
+			cautionImg: chrome.runtime.getURL(`image/caution.svg`),
+			errorImg: chrome.runtime.getURL(`image/error.svg`)
 		};
 	}
 	render() {
@@ -62,13 +68,13 @@ class GrammarExtension extends HTMLElement {
 		openEl.addEventListener(`click`, e => {
 			e.preventDefault();
 
-			const { value, innerText } = this.targetEl;
-			whale.runtime.sendMessage({
-				action: `setOriginalText`,
-				options: {
-					text: value || innerText
-				}
-			});
+			// const { value, innerText } = this.targetEl;
+			// whale.runtime.sendMessage({
+			// 	action: `setOriginalText`,
+			// 	options: {
+			// 		text: value || innerText
+			// 	}
+			// });
 		});
 
 		const powerEl = this.shadowRoot.querySelector(`#grammar-off`);
