@@ -1,0 +1,72 @@
+{
+  "manifest_version": 2,
+  "name": "웨않되 - 맞춤법 검사기",
+  "version": "1.0.2",
+  "description": "웨일 브라우저용 한글 맞춤법 검사기 (feat. NAVER 맞춤법 검사기)",
+  "icons": {
+    "16": "image/icons/contextmenu_logo_16.png",
+    "32": "image/icons/contextmenu_logo_32.png",
+    "48": "image/icons/application_logo_48.png",
+    "64": "image/icons/application_logo_64.png",
+    "128": "image/icons/application_logo_128.png"
+  },
+  "sidebar_action": {
+    "default_page": "sidebar.html",
+    "default_icon": {
+      "32": "image/icons/sidebar_logo_32.png",
+      "48": "image/icons/sidebar_logo_48.png",
+      "64": "image/icons/sidebar_logo_64.png"
+    },
+    "default_title": "웨않되 맞춤법검사",
+    "use_navigation_bar": false,
+    "mobile_user_agent": true
+  },
+  "background": {
+    "scripts": [ "js/background.js" ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://m.search.naver.com/search.naver?from=whale-grammar&query=*"],
+      "css": ["css/content-script.sidebar.css"],
+      "js": ["js/content-script.sidebar.js", "js/content-script.sidebar.iframe.js"],
+      "all_frames": true,
+      "run_at": "document_start"
+    }, {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["https://*.notion.so/*"],
+      "css": ["css/content-script.inspection.css"],
+      "js": ["js/content-script.inspection.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+
+  "permissions": [
+    "https://m.search.naver.com/",
+    "tabs",
+    "storage",
+    "contextMenus",
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    "image/default.png",
+    "image/contest_logo.png",
+    "image/naver_logo.png",
+    "image/power.svg",
+    "image/loading.svg",
+    "image/caution.svg",
+    "image/error.svg",
+    "css/grammar-extension.element.css"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://m.search.naver.com; object-src 'self'",
+  "commands" : {
+   "grammar_check": {
+     "suggested_key": {
+       "default": "Ctrl+Shift+X",
+       "mac": "Command+Shift+X"
+     },
+     "description": "start grammar check"
+   }
+  }
+}
