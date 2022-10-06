@@ -2,7 +2,7 @@
 
 import { measure } from "measurement-protocol";
 import { fetchJson } from "./background_components/jsonp.functions";
-import splitText from "./background_components/split.function";
+// import splitText from "./background_components/split.function";
 
 const GA_TRACK_ID = 'UA-222165360-1';
 const sendInspectionEvent = (origin) => {

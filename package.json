@@ -4,6 +4,7 @@
   "description": "Korean grammar checker extension for whale browser",
   "main": "webpack.config.js",
   "scripts": {
+    "commit": "git add -A && git commit -m",
     "cleanup": "rm -rf dist && mkdir dist",
     "copy": "cp -rip src/* dist/",
     "build": "./node_modules/.bin/webpack --mode=none",
@@ -24,8 +25,8 @@
     "css-loader": "^3.2.0",
     "event-hooks-webpack-plugin": "^2.1.4",
     "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^7.0.3",
-    "sass-loader": "^8.0.0",
+    "sass": "^1.55.0",
+    "sass-loader": "^10.3.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.0.8"

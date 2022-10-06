@@ -186,7 +186,7 @@ document.addEventListener(`DOMContentLoaded`, function() {
 	// 	});
 	// });
 
-		const eventListener = e => EVENT_LISTENER.onDocumentFocused(e);
+		const eventListener = e => EVENT_LISTENER.onDocumentFocused(e); //to check if the document already have focus active
 		EVENT_LISTENER.initializeListener();
 		document.addEventListener(`focusin`, eventListener, true);
 		window.addEventListener(`message`, e => {
@@ -201,3 +201,8 @@ document.addEventListener(`DOMContentLoaded`, function() {
 		});
 
 });
+
+
+
+
+
