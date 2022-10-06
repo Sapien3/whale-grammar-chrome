@@ -112,5 +112,9 @@ module.exports = async function (mode = `production`) {
         },
       }),
     ],
+    watchOptions: {
+      poll: true,
+      ignored: /node_modules/,
+    },
   };
 };
